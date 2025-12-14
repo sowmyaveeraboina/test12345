@@ -26,7 +26,7 @@ jobs:
       
       - name: build jar 
         run: |
-          mvn package --settings .maven/settings.xml -DskipMunitTests
+          mvn package --settings .maven/settings.xml -X -DskipMunitTests
       - name: Publish to Exchange
         run: |
           mvn deploy --settings .maven/settings.xml -X -DskipMunitTests \
