@@ -26,14 +26,14 @@ jobs:
       
       - name: build jar 
         run: |
-          mvn package --settings .maven/settings.xml -X -DskipMunitTests
+          mvn package -f test12345/pom.xml --settings .maven/settings.xml -X -DskipMunitTests
       - name: Publish to Exchange
         run: |
-          mvn deploy --settings .maven/settings.xml -X -DskipMunitTests \
+          mvn deploy -f test12345/pom.xml --settings .maven/settings.xml -X -DskipMunitTests \
           -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}" 
       - name: Deploy to CloudHub 2.0
         run: |
-          mvn deploy --settings .maven/settings.xml -X -DskipMunitTests -DmuleDeploy \
+          mvn deploy -f test12345/pom.xml --settings .maven/settings.xml -X -DskipMunitTests -DmuleDeploy \
           -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}" 
